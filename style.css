@@ -1,10 +1,11 @@
 @import url("d3/lib/jquery-ui/jquery-ui.css");
 
 body {
-	background-color: #ededed;
+	background-color: #282C34;
 	font-size: 16px;
 	font-family: 'Ovo', helvetica, sans-serif;
 	font-weight: 400;
+	color: #ABB2A9;
 }
 
 h1 {
