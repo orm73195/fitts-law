@@ -10,6 +10,9 @@
  * @param {number} bottom Margin form the bottom edge.
  * @param {number} left Margin form the left edge.
  */
+
+var export_result = new Array();
+
 function makeDimension(width, height, top, right, bottom, left) {
 	return {width: width,
 		height: height,
@@ -100,6 +103,7 @@ var effSpeedY = d3.scale.linear()
 
 
 
+
 var fittsTest = {
 	target: {x: 0, y: 0, r: 10},
 	start: {x: 0, y: 0, t: 0},
@@ -110,7 +114,7 @@ var fittsTest = {
 	currentCount: 0,
 	miss: 0,
 	isoLimits: {minD: 200, maxD: 200, minW:50 , maxW: 50},
-	isoParams: {num: 4, distance: 200, width: 50, randomize: true},
+	isoParams: {num: 5, distance: 200, width: 50, randomize: true},
 
 	currentPath: [],
 	active: false,
@@ -296,7 +300,11 @@ var fittsTest = {
 					.duration(5000)
 					.style('stroke-opacity', 0)
 					.remove();
-
+				var temp_plot = new Object();
+				temp_plot.x = this.last.x;
+				temp_plot.y = this.last.y;
+				console.log(temp_plot);
+				export_result.push(temp_plot);
 			this.last = newPoint;
 		}
 	},
