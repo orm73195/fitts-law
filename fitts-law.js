@@ -301,8 +301,13 @@ var fittsTest = {
 					.style('stroke-opacity', 0)
 					.remove();
 				var temp_plot = new Object();
-				temp_plot.x = this.last.x;
-				temp_plot.y = this.last.y;
+				temp_plot.x1 = this.last.x;
+				temp_plot.y1 = this.last.y;
+				temp_plot.x2 = newPoint.x;
+				temp_plot.y2 = newPoint.y;
+				temp_plot.dt = dt;
+				temp_plot.dist = dist;
+				temp_plot.speed = speed;
 				console.log(temp_plot);
 				export_result.push(temp_plot);
 			this.last = newPoint;
