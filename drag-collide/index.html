@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+
+
+
+
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+
+
+
+  <style type="text/css">
+    .list {
+  background: lightcyan;
+  position: relative;
+  min-height: 30px;
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+
+
+
+.item {
+  background: rgba(99, 99, 99, 0.3);
+  position: absolute;
+  width: 50px;
+  float: left;
+  margin: 5px;
+}
+
+.timeline {
+  background: lightgreen;
+  min-width: 200px;
+  max-width: 500px;
+  margin-top: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  min-height: 80px;
+  position: relative;
+  z-index: -1;
+}
+
+  </style>
+
+  <title></title>
+
+
+
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+		$(function() {
+		  var draggableSelector = ".list .item:not(.dropped)";
+		  var init = function() {
+
+		    $(draggableSelector).each(function(i) {
+		      $(this)
+		        .css("left", (($(this).width() + 5) * i) + "px")
+		        .draggable({
+		          //helper: 'clone',
+		          revert: 'invalid',
+		          start: function(event, ui) {
+		            var $clone = ui.helper.clone();
+		            $clone
+		              .removeClass("ui-draggable ui-draggable-dragging")
+		              //.removeAttr("id")
+		              .insertAfter(ui.helper);
+		            $(this).data("clone", $clone);
+		          },
+		          stop: function(event, ui) {
+		            if ($(".ui-draggable-dragging.dropped").length == 0) {
+		              $(this).data("clone").remove();
+		            };
+		          },
+		          //the following are for the jquery-ui-draggable-collision plugin
+		          refreshPositions: true,
+		          obstacle: '.item.dropped',
+		          preventCollision: true,
+		        });
+		    });
+
+		    $('.timeline').droppable({
+		      accept: '.item',
+		      drop: function(event, ui) {
+		        ui.draggable
+		          .addClass("dropped");
+		        setTimeout(reinit, 500);
+		      }
+		    });
+		  };
+
+		  var reinit = function() {
+		    $(".list .item.ui-draggable").draggable("destroy");
+		    init();
+		  }
+
+		  init();
+		});
+
+});//]]>
+
+</script>
+
+
+</head>
+
+<body>
+  <script src="http://test.ranissimo.com/jquery-collision.min.js"></script>
+<script src="http://test.ranissimo.com/jquery-ui-draggable-collision.min.js"></script>
+
+<div class="list" id="list">
+  <div class="item" id="i1">Item 1</div>
+  <div class="item" id="i2">Item 2</div>
+  <div class="item" id="i3">Item 3</div>
+</div>
+
+<div class="timeline" id="timeline">Shopping Bag</div>
+
+
+</body>
+
+</html>

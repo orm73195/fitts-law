@@ -10,7 +10,7 @@ public class TestSite {
 	public static void main(String[] args) throws InterruptedException {
 		System.out.println("testing with firefox");
 		WebDriver driver = new FirefoxDriver();
-		driver.get("http://www.wikipedia.org");
+		driver.get("http://127.0.0.1/~oscarmarin/fitts-law/");
 		WebElement link;
 		link = driver.findElement(By.linkText("English"));
 		link.click();
