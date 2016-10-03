@@ -87,6 +87,14 @@ $(window).load(function(){
 		$(function() {
 		  var draggableSelector = ".list .item:not(.dropped)";
 		  var init = function() {
+// adding from counter example
+      var $start_counter = $( "#event-start" ),
+          $drag_counter = $( "#event-drag" ),
+          $stop_counter = $( "#event-stop" ),
+          counts = [ 0, 0, 0 ];
+///////////////////
+
+
 
 		    $(draggableSelector).each(function(i) {
 		      $(this)
@@ -102,6 +110,18 @@ $(window).load(function(){
 		              .insertAfter(ui.helper);
 		            $(this).data("clone", $clone);
 		          },
+              drag: function(event, ui) {
+                //console.log("Im being dragged");
+                //var t0 = performance.now();
+                var  d = new Date();
+                var nt = d.getTime();
+                console.log("x = " + ui.position.left +" y = " + ui.position.top + " time: " + nt); //x
+                //console.log(ui.position.top); //y
+                //var t1 = performance.now();
+                //console.log("took " + (t1 - t0));
+
+
+              },
 		          stop: function(event, ui) {
 		            if ($(".ui-draggable-dragging.dropped").length == 0) {
 		              $(this).data("clone").remove();
