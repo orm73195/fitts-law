@@ -83,6 +83,17 @@
 
 
 <script type='text/javascript'>//<![CDATA[
+  // adding json variable to store mouse moverment
+
+  var info = {
+    "cords": [
+      {
+        "xcord": "0",
+        "ycord": "0",
+        "time": "0"
+      }
+    ]
+  };
 $(window).load(function(){
 		$(function() {
 		  var draggableSelector = ".list .item:not(.dropped)";
@@ -93,6 +104,8 @@ $(window).load(function(){
           $stop_counter = $( "#event-stop" ),
           counts = [ 0, 0, 0 ];
 ///////////////////
+
+
 
 
 
@@ -115,11 +128,16 @@ $(window).load(function(){
                 //var t0 = performance.now();
                 var  d = new Date();
                 var nt = d.getTime();
-                console.log("x = " + ui.position.left +" y = " + ui.position.top + " time: " + nt); //x
+                console.log("x = " + ui.position.left +" y = " + ui.position.top + " time is: " + nt); //x
                 //console.log(ui.position.top); //y
                 //var t1 = performance.now();
                 //console.log("took " + (t1 - t0));
-
+                // insert data into json info variable
+                info.cords.push({
+              	      "xcord": ui.position.left,
+              	      "ycord": ui.position.top,
+              	      "time": nt
+              	    });
 
               },
 		          stop: function(event, ui) {
@@ -152,7 +170,20 @@ $(window).load(function(){
 		  init();
 		});
 
+    document.getElementById('save').onclick = function() {
+      var textToSave = JSON.stringify(info),
+          filename = 'file.txt',
+          blob = new Blob([textToSave], {type: "text/plain;charset=utf-8"});
+
+      saveAs(blob, filename);
+    }
+
+
 });//]]>
+
+
+
+
 
 </script>
 
@@ -162,6 +193,8 @@ $(window).load(function(){
 <body>
   <script src="http://test.ranissimo.com/jquery-collision.min.js"></script>
 <script src="http://test.ranissimo.com/jquery-ui-draggable-collision.min.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
+
 
 <div class="list" id="list">
   <div class="item" id="i1">Item 1</div>
@@ -171,6 +204,7 @@ $(window).load(function(){
 
 <div class="timeline" id="timeline">Shopping Bag</div>
 
+<button id="save">save</button>
 
 </body>
 
