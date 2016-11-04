@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +29,23 @@ public class DragAndDrop_Action {
 	
 	public void action_1() throws InterruptedException
 	{
+	
+		    Random r = new Random();
+		    int rintOneX = r.nextInt((4-1))+1;		
+		    System.out.println(rintOneX);
+		    int rintTwoX = r.nextInt((4-1))+1;		
+		    System.out.println(rintTwoX);
+		    int rintThreeX = r.nextInt((4-1))+1;		
+		    System.out.println(rintThreeX);
+		    int rintOneY = r.nextInt((4-1))+1;		
+		    System.out.println(rintOneY);
+		    int rintTwoY = r.nextInt((4-1))+1;		
+		    System.out.println(rintTwoY);
+		    int rintThreeY = r.nextInt((4-1))+1;		
+		    System.out.println(rintThreeY);
+		    
+		    
+		
 		// //*[@id="i1"]
 		// //*[@id="box1"]
 		// //*[@id="timeline"]
@@ -44,11 +63,36 @@ public class DragAndDrop_Action {
 		//WebElement dropme = driver.findElement(By.xpath(".//*[@id='box101']"));
 		
 		WebElement dropme = driver.findElement(By.xpath(".//*[@id='timeline']"));
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		
 		Actions builder = new Actions(driver);
-		builder.dragAndDrop(dragme, dropme).perform();
-		
+		System.out.println("About to Click and Hold");
+		builder.clickAndHold(dragme);
+		System.out.println("About to move to offset");
+
+		builder.moveByOffset(40, 75);
+		builder.pause(25);
+		System.out.println("About to move to offset");
+
+		builder.moveByOffset(rintOneX, rintOneY);
+		builder.pause(25);
+		System.out.println("About to move to offset");
+
+		builder.moveByOffset(rintTwoX, rintTwoY);
+		builder.pause(25);
+		System.out.println("About to move to offset");
+
+		builder.moveByOffset(rintThreeX, rintThreeY);
+
+
+		//Thread.sleep(5000);
+		System.out.println("About to move to element");
+
+		builder.moveToElement(dropme);
+		//builder.dragAndDrop(dragme, dropme).perform();
+		System.out.println("About to release");
+
+		builder.release().perform();
 	}
 	
 	

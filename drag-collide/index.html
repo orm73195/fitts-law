@@ -29,7 +29,7 @@
 
 
       <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
-
+      <script src="jquery.ui.touch-punch.js"></script>
 
 
 
@@ -42,7 +42,7 @@
     .list {
   background: lightcyan;
   position: relative;
-  min-height: 30px;
+  min-height: 80px;
   max-width: 500px;
   margin-right: auto;
   margin-left: auto;
@@ -54,21 +54,26 @@
 
 .item {
   background: rgba(99, 99, 99, 0.3);
+  background-image: url("jordan3.png");
   position: absolute;
-  width: 50px;
+  width: 90px;
+  height: 60px;
   float: left;
   margin: 5px;
+  /*z-index: -1;*/
 }
 
 .timeline {
   background: lightgreen;
-  min-width: 100px;
-  max-width: 100px;
+  background-image: url("shopping_bag.png");
+  min-width: 150px;
+  max-width: 150px;
   margin-top: 400px;
-  margin-right: auto;
+  /* margin-right: auto; */
   margin-left: auto;
-  min-height: 100px;
+  min-height: 150px;
   position: relative;
+  right: 10px;
   z-index: -1;
 }
 
@@ -197,12 +202,12 @@ $(window).load(function(){
 
 
 <div class="list" id="list">
-  <div class="item" id="i1">Item 1</div>
+  <div class="item" id="i1"></div>
   <!-- <div class="item" id="i2">Item 2</div>
   <div class="item" id="i3">Item 3</div> -->
 </div>
 
-<div class="timeline" id="timeline">Shopping Bag</div>
+<div class="timeline" id="timeline"></div>
 
 <button id="save">save</button>
 
